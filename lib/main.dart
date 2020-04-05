@@ -27,11 +27,6 @@ class _QuoteListsState extends State<QuoteLists> {
     ),
   ];
 
-  Widget quoteTemplate(quote) {
-    // returning new QuoteCard instance and passing as named parameter
-    return QuoteCard(quote: quote);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,10 +39,10 @@ class _QuoteListsState extends State<QuoteLists> {
         backgroundColor: Colors.redAccent,
       ),
       body: Column(
-        // Cycle through the quotes list and perform a function for each item and for each item take
-        // that string (quote) and return text widget
+        // Cycle through the quotes list and fire a function for each quote and for each quote
+        // get a new instance of the quote card which is returning Widget and outputing quote data 
         // Curly braces are used to wrap the value when the items are in list
-        children: quotes.map((quote) => quoteTemplate(quote)).toList(),
+        children: quotes.map((quote) => QuoteCard(quote: quote)).toList(),
       ),
     );
   }
