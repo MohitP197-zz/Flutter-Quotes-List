@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './model/quote.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -11,11 +12,21 @@ class QuoteLists extends StatefulWidget {
 }
 
 class _QuoteListsState extends State<QuoteLists> {
-  List<String> quotes = [
-    'Be yourself; everyone else is already taken',
-    'I have nothing to declare except my genius',
-    'The truth is rarely pure and never simple',
+  List<Quote> quotes = [
+    Quote(
+      author: 'Osca Wilde',
+      text: 'Be yourself; everyone else is already taken',
+    ),
+    Quote(
+      author: 'Osca Wilde',
+      text: 'Be yourself; everyone else is already taken',
+    ),
+    Quote(
+      author: 'Osca Wilde',
+      text: 'Be yourself; everyone else is already taken',
+    ),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +41,10 @@ class _QuoteListsState extends State<QuoteLists> {
         body: Column(
           // Cycle through the quotes list and perform a function for each item and for each item take
           // that string (quote) and return text widget
-          children: quotes.map((quote) => Text(quote)).toList(),
+          // Curly braces are used to wrap the value when the items are in list
+          children: quotes
+              .map((quote) => Text('${quote.text} - ${quote.author}'))
+              .toList(),
         ));
   }
 }
