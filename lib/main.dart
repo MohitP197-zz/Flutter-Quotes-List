@@ -28,6 +28,39 @@ class _QuoteListsState extends State<QuoteLists> {
   ];
 
   Widget quoteTemplate(quote) {
+    // returning new QuoteCard instance and passing as named parameter
+    return QuoteCard(quote: quote);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[200],
+      appBar: AppBar(
+        title: Text(
+          'Awesome Quotes',
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.redAccent,
+      ),
+      body: Column(
+        // Cycle through the quotes list and perform a function for each item and for each item take
+        // that string (quote) and return text widget
+        // Curly braces are used to wrap the value when the items are in list
+        children: quotes.map((quote) => quoteTemplate(quote)).toList(),
+      ),
+    );
+  }
+}
+
+class QuoteCard extends StatelessWidget {
+  final Quote quote;
+
+  // Named parameter is received and assigning to above local variable
+  QuoteCard({this.quote});
+
+  @override
+  Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
       child: Padding(
@@ -56,28 +89,5 @@ class _QuoteListsState extends State<QuoteLists> {
         ),
       ),
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.grey[200],
-        appBar: AppBar(
-          title: Text(
-            'Awesome Quotes',
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.redAccent,
-        ),
-        body: Column(
-          // Cycle through the quotes list and perform a function for each item and for each item take
-          // that string (quote) and return text widget
-          // Curly braces are used to wrap the value when the items are in list
-          children: quotes
-              .map(
-                (quote) => quoteTemplate(quote),
-              )
-              .toList(),
-        ));
   }
 }
