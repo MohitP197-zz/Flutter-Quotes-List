@@ -43,7 +43,14 @@ class _QuoteListsState extends State<QuoteLists> {
         // Cycle through the quotes list and fire a function for each quote and for each quote
         // get a new instance of the quote card which is returning Widget and outputing quote data
         // Curly braces are used to wrap the value when the items are in list
-        children: quotes.map((quote) => QuoteCard(quote: quote)).toList(),
+        children: quotes.map((quote) => QuoteCard(
+          quote: quote,
+          delete: () {
+            setState(() {
+              quotes.remove(quote);
+            });
+          }
+          ),).toList(),
       ),
     );
   }
